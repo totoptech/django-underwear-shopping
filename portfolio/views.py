@@ -187,3 +187,16 @@ class GiftListAPIView(ListCreateAPIView):
                     json_result.append(portfolio)
         return Response( data=json_result,
                         status=status.HTTP_200_OK)
+
+class AddGiftAPIView(ListCreateAPIView):
+    permission_classes = (IsAuthenticated,)
+
+    def create(self, request, *args, **kwargs):
+        uniq_id = request.data['uniq_id']
+        gift = Gift.objects.get_or_create(
+            account=self.request.user,
+            uniq_id = uniq_id)
+        update_rank(uniq_id,0,0,1)
+        return Response(
+            {'status':'OK'},
+            status=status.HTTP_201_CREATED)                        
