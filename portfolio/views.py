@@ -262,4 +262,29 @@ class DeleteFriendAPIView(ListCreateAPIView):
         
         return Response(
             {'status':'OK'},
-            status=status.HTTP_200_OK)   
+            status=status.HTTP_200_OK)
+
+class IsFriendAPIView(RetrieveAPIView):
+
+    def post(self, request, *args, **kwargs):
+        myEmail = request.data['myEmail']
+        brideEmail = request.data['brideEmail']
+        print(myEmail,brideEmail)
+        account = Account.objects.filter(email=brideEmail)
+        if account:
+            friend = Friend.objects.filter(
+                account_id=account[0].id,
+                friend=myEmail)
+            print(friend)
+            if friend:
+                return Response(
+                    data=serializers.serialize("json",account),
+                    status=status.HTTP_200_OK)
+            else:
+                return Response(
+                    {'status':'Your email is not valid'},
+                    status=status.HTTP_202_ACCEPTED)
+        else:
+            return Response(
+                {'status':'Bride Email is not valid'},
+                status=status.HTTP_202_ACCEPTED)
