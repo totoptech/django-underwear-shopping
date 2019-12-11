@@ -100,3 +100,20 @@ class BrideListAPIView(RetrieveAPIView):
                     json_result.append(portfolio)
         return Response( data=json_result,
                         status=status.HTTP_200_OK)
+
+
+class EditProfileAPIView(ListCreateAPIView):
+    permission_classes = (IsAuthenticated,)
+
+    def create(self, request, *args, **kwargs):
+        account = Account.objects.get(email=self.request.user)
+        account.firstname = request.data['firstname']
+        account.lastname = request.data['lastname']
+        account.brasize = request.data['brasize']
+        account.pantysize = request.data['pantysize']
+        account.bottomsize = request.data['bottomsize']
+        account.topsize = request.data['topsize']
+        account.save()
+        return Response(
+            {'status': "OK"},
+            status=status.HTTP_200_OK)
