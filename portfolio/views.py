@@ -200,3 +200,16 @@ class AddGiftAPIView(ListCreateAPIView):
         return Response(
             {'status':'OK'},
             status=status.HTTP_201_CREATED)                        
+
+class RemoveGiftAPIView(ListCreateAPIView):
+    permission_classes = (IsAuthenticated,)
+
+    def create(self, request, *args, **kwargs):
+        uniq_id = request.data['uniq_id']
+        gift = Gift.objects.filter(
+            account=self.request.user,
+            uniq_id = uniq_id).delete()
+
+        return Response(
+            {'status':'OK'},
+            status=status.HTTP_201_CREATED)
