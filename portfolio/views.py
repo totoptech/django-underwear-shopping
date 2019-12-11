@@ -117,3 +117,17 @@ class EditProfileAPIView(ListCreateAPIView):
         return Response(
             {'status': "OK"},
             status=status.HTTP_200_OK)
+
+class PortfolioListCreateAPIView(ListCreateAPIView):
+    permission_classes = (IsAuthenticated,)
+    print("I am here")
+
+
+def portfolioList(request):
+	user = request.user
+	try:
+		print("account", user.email)
+	except:
+		pass
+
+	return HttpResponse("OK")
