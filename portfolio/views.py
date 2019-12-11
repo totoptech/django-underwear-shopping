@@ -77,3 +77,26 @@ class PortfolioListAPIView(ListCreateAPIView):
             data=json_result,
             status=status.HTTP_200_OK,
             )
+
+
+
+class BrideListAPIView(RetrieveAPIView):
+
+    def post(self, request, *args, **kwargs):
+
+        account = Account.objects.get(email=request.data['email'])
+        print(account.id);
+        path = settings.BASE_DIR + '/static/victoria_secret.json'
+        json_data = open(path)
+        json_portfolios = json.load(json_data)
+        json_result = []
+        for portfolio in json_portfolios:
+            uniq_id = portfolio['uniq_id']
+            portfoliolike = PortfolioLike.objects.filter(account_id=account.id, uniq_id = uniq_id)
+
+            if portfoliolike:
+                if(portfoliolike[0].lol >= 1):
+                    portfolio['lol'] = portfoliolike[0].lol
+                    json_result.append(portfolio)
+        return Response( data=json_result,
+                        status=status.HTTP_200_OK)
