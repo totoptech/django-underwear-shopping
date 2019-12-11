@@ -236,3 +236,30 @@ class AddFriendAPIView(ListCreateAPIView):
         return Response(
             {'status':'OK'},
             status=status.HTTP_200_OK)
+
+class FriendListAPIView(ListCreateAPIView):
+    permission_classes = (IsAuthenticated,)
+
+    def get(self, *args, **kwargs):
+        print(self.request.user)
+        friends = Friend.objects.filter(
+            account=self.request.user)
+        json = []
+        for friend in friends:
+            json.append(friend.friend)
+
+        return Response(
+            data=json,
+            status=status.HTTP_200_OK)
+
+class DeleteFriendAPIView(ListCreateAPIView):
+    permission_classes = (IsAuthenticated,)
+    
+    def create(self, request, *args, **kwargs):
+        friend = Friend.objects.get(
+            account=self.request.user,
+            friend=request.data['email']).delete()
+        
+        return Response(
+            {'status':'OK'},
+            status=status.HTTP_200_OK)   
