@@ -131,3 +131,39 @@ def portfolioList(request):
 		pass
 
 	return HttpResponse("OK")
+
+class PortfolioLikeAPIView(ListCreateAPIView):
+    permission_classes = (IsAuthenticated,)
+    serializer_class = PortfolioLikeSerializer
+
+    def create(self, request, *args, **kwargs):
+        uniq_id = request.data['uniq_id']
+        lolstate = request.data['lol']
+        portfoliolike = PortfolioLike.objects.get_or_create(
+            account=self.request.user, 
+            uniq_id = uniq_id)
+        if portfoliolike[0].lol == 1:
+            update_rank(uniq_id,-1,0,0)
+        if portfoliolike[0].lol == 2:
+            update_rank(uniq_id,0,-1,0)
+        if lolstate == 1:
+            update_rank(uniq_id,1,0,0)
+        if lolstate == 2:
+            update_rank(uniq_id,0,1,0)
+        print(lolstate, portfoliolike[0].lol)
+        portfoliolike[0].lol = lolstate
+        portfoliolike[0].save()
+        return Response(
+            {'status': "OK"},
+            status=status.HTTP_201_CREATED)
+
+    def perform_create(self, serializer):
+        portfoliolike = PortfolioLike.objects.create(
+            account=self.request.user, 
+            uniq_id = serializer.data['uniq_id'],
+            lol = serializer.data['lol'])
+        return portfoliolike
+
+    def get_queryset(self):
+        return PortfolioLike.objects \
+            .filter(account=self.request.user)
