@@ -298,3 +298,15 @@ def test_send_message(request):
             fail_silently=False
             )
     return HttpResponse("Ok")
+
+def initialize_rankinformation(request):
+    path = settings.BASE_DIR + '/static/victoria_secret.json'
+    json_data = open(path)
+    json_portfolios = json.load(json_data)
+    json_result = []
+    for portfolio in json_portfolios:
+        uniq_id = portfolio['uniq_id']
+        product_rank = ProductRank.objects.get_or_create(uniq_id = uniq_id)
+        product_rank[0].rank = 0
+        product_rank[0].save()
+    return HttpResponse("Ok")
