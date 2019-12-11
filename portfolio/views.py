@@ -167,3 +167,23 @@ class PortfolioLikeAPIView(ListCreateAPIView):
     def get_queryset(self):
         return PortfolioLike.objects \
             .filter(account=self.request.user)
+
+class GiftListAPIView(ListCreateAPIView):
+    permission_classes = (IsAuthenticated,)
+    serializer_class = AccountSerializer
+
+    def get(self, *args, **kwargs):
+        account = Account.objects.get(email=self.request.user)
+        path = settings.BASE_DIR + '/static/victoria_secret.json'
+        json_data = open(path)
+        json_portfolios = json.load(json_data)
+        json_result = []
+        for portfolio in json_portfolios:
+            uniq_id = portfolio['uniq_id']
+            portfoliolike = PortfolioLike.objects.filter(account=account, uniq_id = uniq_id)
+            if portfoliolike:
+                if portfoliolike[0].lol == 2:
+                    portfolio['lol'] = 2
+                    json_result.append(portfolio)
+        return Response( data=json_result,
+                        status=status.HTTP_200_OK)
