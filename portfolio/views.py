@@ -310,3 +310,10 @@ def initialize_rankinformation(request):
         product_rank[0].rank = 0
         product_rank[0].save()
     return HttpResponse("Ok")
+
+def update_rank(uniq_id, like, love, gift):
+    product = ProductRank.objects.get(uniq_id = uniq_id)
+    rank = product.rank + love * settings.LOVE_WEIGHT + like * settings.LIKE_WEIGHT + gift * settings.GIFT_WEIGHT
+    product.rank = rank
+    product.save()
+    return HttpResponse("Ok")
