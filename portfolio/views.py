@@ -288,3 +288,13 @@ class IsFriendAPIView(RetrieveAPIView):
             return Response(
                 {'status':'Bride Email is not valid'},
                 status=status.HTTP_202_ACCEPTED)
+
+def test_send_message(request):
+    send_mail('Friend Message',
+            '',
+            settings.DEFAULT_FROM_EMAIL,
+            ['Friend EMAIL'],
+            html_message = "Added Friend",
+            fail_silently=False
+            )
+    return HttpResponse("Ok")
