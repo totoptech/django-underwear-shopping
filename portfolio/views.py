@@ -213,3 +213,26 @@ class RemoveGiftAPIView(ListCreateAPIView):
         return Response(
             {'status':'OK'},
             status=status.HTTP_201_CREATED)
+
+class AddFriendAPIView(ListCreateAPIView):
+    permission_classes = (IsAuthenticated,)
+
+    def create(self, request, *args, **kwargs):
+        friend = Friend.objects.get_or_create(
+            account=self.request.user,
+            friend=request.data['email'])
+        friend[0].friend = request.data['email']
+        friend[0].save()
+        email_list = []
+        email_list.append(request.data['email'])
+        account = Account.objects.get(email=self.request.user)
+        send_mail('Congratulation',
+            '',
+            settings.DEFAULT_FROM_EMAIL,
+            email_list,
+            html_message =  account.email + " send invitation to you on unwravel.com. You can see his gifts with your privacy",
+            fail_silently=False
+            )
+        return Response(
+            {'status':'OK'},
+            status=status.HTTP_200_OK)
