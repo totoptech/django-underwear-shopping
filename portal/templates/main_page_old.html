@@ -1,0 +1,72 @@
+{% load bootstrap4 %}
+{% bootstrap_css %} 
+{% bootstrap_javascript jquery='full' %}
+{{date_form.media}}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Login V16</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.1/css/bootstrap-slider.css" >
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.1/bootstrap-slider.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.1/css/bootstrap-slider.min.css" >
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.1/bootstrap-slider.js"></script>
+
+</head>
+<body>
+	
+	<div class="main bg-info">
+		<div class="header mx-4 my-4">
+			<div class="row">
+				<div class="col-md-2">
+					<h1 class="text-white">barker</h1>
+				</div>
+				<div class="col-md-10">
+					<form class="validate-form p-b-33 p-t-5" action="/search/" method="post">
+							{% csrf_token %}
+						<div class="row">
+							<div class="col-md-2">
+								<h4 class="text-white">Brand</h4>
+								<select name="brand_id" style="width:90%">
+									{% for t in brands %}
+										<option value="{{t.id}}"{% if t.id == brand_id %} selected{% endif %}>{{t.text}}</option>
+									{% endfor %}
+								</select>
+							</div>
+							<div class="col-md-2">
+								<h4 class="text-white">Model</h4>
+								<select name="model_id" style="width:90%">
+									{% for t in models %}
+										<option value="{{t.id}}"{% if t.id == model_id %} selected{% endif %}>{{t.text}}</option>
+									{% endfor %}
+								</select>
+							</div>
+							<div class="col-md-2">
+								<h4 class="text-white">Date</h4>
+								{{date_form}}
+							</div>
+							<div class="col-md-2">
+								<h4 class="text-white">Date</h4>
+								<b>$ 10</b> <input id="ex2" type="text" class="span2" value="" data-slider-min="10" data-slider-max="1000" data-slider-step="5" data-slider-value="[250,450]"/> <b>$ 1000</b>
+							</div>
+							<div class="col-md-2">Brand</div>
+							<div class="col-md-2">col-md-4</div>
+						</div>
+						
+					</form>
+				</div>
+			</div>
+		</div>
+	</div> 
+	<script>
+		// With JQuery
+	$("#ex2").slider({});
+
+	// Without JQuery
+	</script>
+</body>
+
+</html>

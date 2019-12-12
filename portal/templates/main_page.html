@@ -1,0 +1,304 @@
+{% load bootstrap4 %}
+{% bootstrap_css %} 
+{% bootstrap_javascript jquery='full' %}
+{{date_form.media}}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Barker</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	 
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	
+	<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.14.2/dist/bootstrap-table.min.css">
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/main_page.css">
+
+	
+	
+	<style>
+
+		.searchbar{
+		margin: auto
+		height: 30px;
+		background-color: #353b48;
+		border-radius: 20px;
+		/*padding: 10px;*/
+		padding-left: 10px;
+		width: 110%;
+		}
+
+		.search_input{
+			color: white;
+			border: 0;
+			outline: 0;
+			background: none;
+			width: 100px;
+			caret-color:transparent;
+			line-height: 40px;
+			height: 35px;
+			/*transition: width 0.4s linear;*/
+		}
+
+		.searchbar:hover > .search_input{
+			padding: 0 10px;
+			/* width: 450px; */
+			caret-color:red;
+			/* transition: width 0.4s linear; */
+		}
+
+		.searchbar:hover > .searchicon{
+			background: white;
+			color: #e74c3c;
+		}
+
+		.searchicon{
+			/* background: white; */
+			height: 25px;
+			width: 25px;
+			float: right;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border-radius: 50%;
+			/*color:white;*/
+			/*background: #353b48;*/
+			margin-top: 4px;
+			margin-right: : 4px;
+			background: white;
+			color: #e74c3c;
+		}
+	</style>
+
+	<script>
+			$( function() {
+			$( "#slider-range" ).slider({
+				range: true,
+				min: 0,
+				max: 150000,
+				values: [ 0, 150000 ],
+				slide: function( event, ui ) {
+					$( "#amount" ).val(ui.values[ 0 ] + " – " + ui.values[ 1 ] );
+				}
+			});
+
+			$( "#slider-range-year" ).slider({
+				range: true,
+				min: 1990,
+				max: 2019,
+				values: [ 1990, 2019 ],
+				slide: function( event, ui ) {
+					$( "#amount_year" ).val(ui.values[ 0 ] + " – " + ui.values[ 1 ] );
+				}
+			});
+
+			$( "#amount" ).val($( "#slider-range" ).slider( "values", 0 ) +
+			" – " + $( "#slider-range" ).slider( "values", 1 ) );
+			
+
+			$( "#amount_year" ).val($( "#slider-range-year" ).slider( "values", 0 ) +
+			" – " + $( "#slider-range-year" ).slider( "values", 1 ) );
+			} );
+
+			$( function() {
+				$( "#accordion" ).accordion();
+			} );
+			
+			</script>
+
+</head>
+<body>
+	
+	<div class="main bg-info">
+		<div class="header mx-4">
+			<div class="row py-4 style="float: left">
+				<div class="col-md-2">
+					<h1 class="text-white" style="font-size: 50px"><b>barker</b></h1>
+				</div>
+				<div class="col-md-10">
+					<form class="validate-form p-b-33 p-t-5" action="" method="post">
+							{% csrf_token %}
+						<div class="row" style="margin-top: 20px">
+							<div class="col-md-2">
+								<div class="brand-input">
+								<h4 class="text-white text-center"><b>Brand</b><i class='fas fa-chevron-circle-down' style='font-size:20px;float: right;padding: 3px;color: #353b48'></i></h4><br>
+								<!-- <button type="button" class="btn btn-primary btn-sm" onclick="inputvalue()">Brand</button> -->
+								<div class="input-brand action-bar" style="display: none">
+								<select name="brand_id" style="width:90%; height: 40px; border-radius: 10px; background-color: white;">
+									{% for t in brands %}
+										<option value="{{t.id}}"{% if t.id == brand_id %} selected{% endif %}>{{t.text}}</option>
+									{% endfor %}
+								</select>
+								</div></div>
+							</div>
+							<div class="col-md-2">
+								<div class="model-input">
+								<h4 class="text-white text-center"><b>Model</b><i class='fas fa-chevron-circle-down' style='font-size:20px;float: right;padding: 3px;color: #353b48'></i></h4><br>
+								<div class="input-model action-bar" style="display: none">
+								<select name="model_id" style="width:90%; height: 40px; border-radius: 10px; background-color: white;">
+									{% for t in models %}
+										<option value="{{t.id}}"{% if t.id == model_id %} selected{% endif %}>{{t.text}}</option>
+									{% endfor %}
+								</select>
+								</div></div>
+							</div>
+							<div class="col-md-2">
+								<div class="date-input" style="">
+								<h4 class="text-white text-center"><b>Date</b><i class='fas fa-chevron-circle-down' style='font-size:20px;float: right;padding: 3px;color: #353b48'></i></h4>
+								<div class="input-date action-bar" style="display: none">
+								{{date_form}}
+								</div></div>
+							</div>
+							<div class="col-md-2">
+								<div class="price-input">
+								<h4 class="text-white text-center"><b>Price</b><i class='fas fa-chevron-circle-down' style='font-size:20px;float: right;padding: 3px;color: #353b48'></i></h4>
+								<div class="input-price action-bar" style="display: none">
+								<p><input type="text" id="amount" name="price" readonly style="border:0; color:#f6931f; font-weight:bold; background:transparent"></p>
+										
+								<div id="slider-range"></div>
+								</div></div>
+							</div>
+							<div class="col-md-2">
+								<div class="year-input">
+								<h4 class="text-white text-center"><b>Year</b><i class='fas fa-chevron-circle-down' style='font-size:20px;float: right;padding: 3px;color: #353b48'></i></h4>
+								<div class="input-year action-bar" style="display: none">
+								<p><input type="text" id="amount_year" name="year" readonly style="border:0; color:#f6931f; font-weight:bold; background:transparent"></p>
+										
+								<div id="slider-range-year"></div>
+								</div></div>
+							</div>
+							<div class="col-md-2">
+								<div class="searchbar">
+									<input class="search_input" type="text" name="search_input" placeholder="Search...">
+									<button type="submit" class="searchicon"><i class="fas fa-search" style=""></i></button>
+								</div>
+							</div>
+						</div>
+						
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="main-content mx-4 mb-5">
+						<div class="container-table100" >
+					        <div class="wrap-table100" style="height: 650px; overflow-y: scroll;">  
+					            <div class="table" style="height: 700px; overflow-y: scroll;">
+					                <div class="row1 header">
+					                    <div class="cell">
+					                        Product Image
+					                    </div>
+					                    <div class="cell">
+					                        Item ID
+					                    </div>
+					                    <div class="cell">
+					                        Title
+					                    </div>
+					                    <div class="cell">
+					                        Category Name
+					                    </div>
+					                    <div class="cell">
+					                        Year
+					                    </div>
+					                    <div class="cell">
+					                        Make
+					                    </div>
+					                    <div class="cell">
+					                        Model
+					                    </div>
+					                    <div class="cell">
+					                        Price
+					                    </div>
+					                    <div class="cell">
+					                    	Tracking Url
+					                    </div>
+					                    <div class="cell">
+					                        Description
+					                    </div>
+					                </div>
+					                {% for product in products %}
+									<div class="row1">
+										<div class="cell" data-title=''>
+											<img src="{{product.thumbnail_url}}" />
+										</div>
+										<div class="cell" data-title='Item ID'>
+											{{product.item_id}}
+										</div>
+										<div class="cell" data-title='Title'>
+											{{product.item_title}}
+										</div>
+										<div class="cell" data-title='Category Name'>
+											{{product.primary_category_name}}
+										</div>
+										<div class="cell" data-title='Price'>
+											{{product.Year}}
+										</div>
+										<div class="cell" data-title='Price'>
+											{{product.Make}}
+										</div>
+										<div class="cell" data-title='Price'>
+											{{product.Model}}
+										</div>
+										<div class="cell" data-title='Price'>
+											{{product.price}}
+										</div>
+										<div class="cell" data-title='Tracking Url'>
+											{{product.view_item_url}}
+										</div>
+										<div class="cell" data-title='Description'>
+											{{product.Description}}
+										</div>
+									</div>
+									{% endfor %}
+						    </div>
+					        </div>
+					    </div>	
+
+						<h2 class="text-center mx-5 my-5"><b>AVERAGES</b></h2>
+						
+						<div class="table-container" style="padding-bottom: 50px">					
+							<table class="table table-bordered table-condensed table-striped table-vertical-center text-center" style="font-size: 30px">																
+								<thead>
+									<tr class="text-white">																			
+										<th class="product_year"># Available</th>																													
+										<th class="product_make">Year</th>																													
+										<th class="product_model">Price</th>						
+
+										<th class="product_model" style="width: 40%"></th>																																
+									</tr>
+								</thead>																								
+								<tbody>									
+									
+									<tr class="even bg-light">
+										
+											<td class="product_year">{{average_available}}</a></td>
+										
+											<td class="product_make">{{average_year}}</td>
+										
+											<td class="product_model">{{average_price}}</td>
+											
+											<td class="product_model"></td>									
+										
+									</tr>
+							
+								</tbody>
+							</table>
+							
+						</div>
+
+					</div>
+	
+	</div>
+	<script src="https://unpkg.com/bootstrap-table@1.14.2/dist/bootstrap-table.min.js"></script>
+	<script src="{{STATIC_URL}}js/main_page.js"></script>
+
+</body>
+
+
+</html>

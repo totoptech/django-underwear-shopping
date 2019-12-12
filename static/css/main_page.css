@@ -1,0 +1,290 @@
+
+
+/* ------------------------------------ */
+
+
+
+/*//////////////////////////////////////////////////////////////////
+[ Table ]*/
+
+.limiter {
+  width: 100%;
+  margin: 0 auto;
+  background: #c4d3f6;
+}
+
+.limiter > p {
+  margin-left: 50px;
+  padding-top: 30px;
+  font-size: 20px;
+  color: #414986
+}
+
+.container-table100 {
+  width: 100%;
+  /*background: #c4d3f6;*/
+
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  /*padding: 20px 20px;*/
+}
+
+.wrap-table100 {
+  overflow: hidden;
+}
+
+.table {
+  width: 100%;
+  display: table;
+}
+h4 {
+  background: #157c8c;
+  border-radius: 10px;
+  padding: 3px;
+}
+.brand-input:hover .input-brand {
+  display: block !important;
+  position: absolute;
+  margin-top: -25px;
+}
+
+.model-input:hover .input-model {
+  display: block !important;
+  position: absolute;
+  margin-top: -25px;
+}
+
+.date-input:hover .input-date {
+  display: block !important;
+  position: absolute;
+}
+
+.price-input:hover .input-price {
+  display: block !important;
+  position: absolute;
+}
+
+.year-input:hover .input-year {
+  display: block !important;
+  position: absolute;
+}
+
+.action-bar {
+  position: absolute;
+  background: beige;
+  border-radius: 7px;
+  padding: 20px;
+  width: 90%;
+}
+
+@media screen and (max-width: 768px) {
+  .table {
+    display: block;
+  }
+}
+
+.row1 {
+  display: table-row;
+  background: #fff;
+}
+
+.row1.header {
+  color: #ffffff;
+  background: rgb(67, 67, 150);
+}
+
+@media screen and (max-width: 768px) {
+  .row {
+    display: block;
+  }
+
+  .row1.header {
+    padding: 0;
+    height: 0px;
+  }
+
+  .row1.header .cell {
+    display: none;
+  }
+
+  .row1 .cell:before {
+    font-family: Poppins-Bold;
+    font-size: 12px;
+    color: #808080;
+    line-height: 1.2;
+    text-transform: uppercase;
+    font-weight: unset !important;
+
+    margin-bottom: 13px;
+    content: attr(data-title);
+    min-width: 98px;
+    display: block;
+  }
+}
+
+.cell {
+  display: table-cell;
+  text-align: center;
+}
+
+.row1 .cell:nth-child(1) {
+  padding-left: 20px;
+}
+.row1 .cell:nth-child(2) {
+/*  padding-left: 40px;*/
+}
+.row1 .cell:nth-child(3) {
+  width: 200px;
+}
+.row1 .cell:nth-child(7) {
+}
+.row1 .cell:nth-child(8) {
+  max-width: 400px;
+  overflow: auto;
+}
+.row1 .cell:nth-child(9) {
+  max-width: 400px;
+  overflow: auto;
+}
+
+
+.cell img {
+  width: 70px;
+  height: 70px;
+}
+
+.cell > div {
+  height: 100px;
+  overflow: scroll;
+}
+
+@media screen and (max-width: 768px) {
+  .cell {
+    display: block;
+  }
+}
+
+.row1 .cell {
+  font-family: Arial;
+  font-size: 15px;
+  color: #666666;
+
+  vertical-align: middle;
+  padding: 5px;
+  border: 1px solid #949191;
+}
+
+.row1.header .cell {
+  font-family: Arial;
+  font-size: 18px;
+  color: #fff;
+  line-height: 1.2;
+  font-weight: unset !important;
+  padding-right: 10px;
+  padding-top: 19px;
+  padding-bottom: 19px;
+}
+
+.row1 .cell:nth-child(1) {
+
+}
+
+
+
+.table, .row {
+  width: 100% !important;
+}
+
+
+
+@media (max-width: 768px) {
+  .row {
+    border-bottom: 1px solid #f2f2f2;
+    padding-bottom: 18px;
+    padding-top: 30px;
+    padding-right: 15px;
+    margin: 0;
+  }
+  
+  .row1 .cell {
+    border: none;
+    padding-left: 30px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+  
+  .row1 .cell {
+    font-family: Poppins-Regular;
+    font-size: 18px;
+    color: #555555;
+    line-height: 1.2;
+    font-weight: unset !important;
+  }
+
+  .table, .row, .cell {
+    width: 100% !important;
+  }
+}
+
+
+header {
+  width: 100%;
+  padding: 30px;
+  background-color: rgb(50,50,100);
+  text-align: center;
+}
+
+header > select {
+  width: 150px;
+  height: 30px;
+  margin: 10px;
+}
+
+header > p {
+  display: inline-block;
+  color: white;
+  margin: 10px;
+}
+
+header > input {
+  display: inline-block;
+  width: 100px;
+  height: 30px;
+  margin: 10px;
+  padding: 10px;
+}
+
+header > button {
+  width: 100px;
+  height: 30px;
+  margin: 10px;
+}
+
+.pagination {
+  display: inline-block;
+}
+.footer {
+  width: 100%;
+  text-align: center;
+  padding-bottom: 40px;
+}
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+}
+
+.pagination a.active {
+  background-color: rgb(50,50,100);
+  color: white;
+}
+.pagination a:hover:not(.active) {
+  background-color: #6c7ae0;
+}

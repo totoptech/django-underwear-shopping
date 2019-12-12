@@ -1,0 +1,129 @@
+ 
+.tabs-left {
+
+	margin-top: 3rem;
+
+}
+
+.nav-tabs {
+
+	float: left;
+
+	border-bottom: 0;
+
+}
+
+.nav-tabs li {
+
+	float: none;
+
+	margin: 0;
+
+}
+
+.nav-tabs li a {
+
+	margin-right: 0;
+
+	border: 0;
+
+	background-color: #290E45;
+
+	color:#fff;
+
+	border-bottom:solid 1px #fff;
+
+}
+
+.nav-tabs li a:hover {
+
+	background-color: #340a60;
+
+	color:#f1f1f1;
+
+}
+
+.nav-tabs .glyphicon {
+
+	color: #fff;
+
+}
+
+.nav-tabs .active .glyphicon {
+
+	color: #333;
+
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+
+	border: 0;
+
+}
+
+.tab-content {
+
+	margin-left: 45px;
+
+}
+
+.tab-content .tab-pane {
+
+	display: none;
+
+	background-color: #fff;
+
+	padding: 1.6rem;
+
+	overflow-y: auto;
+
+}
+
+.tab-content .active {
+
+	display: block;
+
+}
+
+.leftside {
+
+	width:25%;
+
+}
+
+.nav-tabs > li.active a {
+
+	background:#fff;
+
+	color:#000;
+
+}
+
+.nav-tabs > li > a {
+
+	border-radius: 0;
+
+	display: block;
+
+	padding: 10px 14px;
+
+	width: 100%;
+
+}
+
+h1.heading_cla {
+
+	color: #4d4d4d;
+
+	font-size: 21px;
+
+	font-weight:normal;
+
+	line-height: 1em;
+
+	margin: 0 0 17px;
+
+	text-transform: uppercase;
+
+}
+ 

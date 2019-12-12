@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Barkers</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+     
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.14.2/dist/bootstrap-table.min.css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/main_page.css">
+</head>
+<body>
+<div class="container">
+    <div class="row my-4 mt-4" style="width: 80%; padding-top: 100px">
+        <div class = "col-md-5">
+            <h2>Key Words</h2>
+            <div class="table-container">
+                <table class="table table-bordered table-condensed table-striped table-vertical-center">
+                    <thead>
+                    </thead>
+                    <tbody>
+                        {% for keyword in keywords %}
+                        <tr class="even">
+                            <td class="username"><a href="/company/1/users/edit/5">{{keyword.keywords}}</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div><br/>
+            <form class="p-b-33 p-t-5" action="/add_keyword/" method="post">
+                {% csrf_token %}
+                <input name="keyword">
+                <button type="submit">Add Keywords</button>
+            </form>
+        </div>
+        <div class = "col-md-4">
+            <h2>Items Limit</h2>
+            <form class="p-b-33 p-t-5" action="/change_item_limit/" method="post">
+                {% csrf_token %}
+                <input name="item_limit"value = "{{item_limit.items_limit}}">
+                <button type="submit">change</button>
+            </form>
+        </div>
+        <div class = "col-md-3">
+            <a href="/scraper/"><button>Saving Products</button></a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,134 @@
+{% extends "distributorBase.html" %}
+{% load i18n %}
+
+{% block head %}
+
+{% endblock %}
+{% block body_main %}
+            <div class="col-lg-10">
+                <div class="main-container">
+                    <div class="row">
+                        <div id="div_messages">
+                            
+                        </div>
+                        
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="breadcrumbs">
+                    <ul class="breadcrumbs__list">
+                        <li class="breadcrumbs__item">Showing list of users</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="">
+
+                    
+
+
+<div class="table-container">
+
+<table class="table table-bordered table-condensed table-striped table-vertical-center">
+    
+    
+    <thead>
+        <tr>
+        
+            
+            <th style="display:none" class="row_id">Row ID</th>
+            
+        
+            
+            <th class="username">Username</th>
+            
+        
+            
+            <th class="email">Email</th>
+            
+        
+            
+            <th class="first_name">Full Name</th>
+            
+        
+            
+            <th class="last_name">Time Zone</th>
+            
+        
+            
+            <th class="actions">Actions</th>
+            
+        
+        </tr>
+    </thead>
+    
+    
+    
+    <tbody>
+         
+        {% for user in user_profile %}
+        <tr class="even">
+            
+                <td style="display:none" class="row_id"><span id="row_id_5"></td>
+            
+                <td class="username"><a href="/company/1/users/edit/5">{{user.profile_public_name}}</a></td>
+            
+                <td class="email">{{user.profile_email}}</td>
+            
+                <td class="first_name">{{user.profile_full_name}}</td>
+            
+                <td class="last_name">{{user.profile_timezone}}</td>
+            
+                <td style="width:120px; text-align:center;" class="actions botAcc3 center"><a href="/distributor/edit/{{user.SProfile_id}}" style="padding: 5px;border-radius: 20px;text-decoration: none;font-size: 10px;" class="btn-action glyphicon glyphicon-pencil btn-mcs" title="Edit"><i class=""></i></a>&nbsp;&nbsp;<a href="/distributor/delete/{{user.SProfile_id}}" style="padding: 5px;border-radius: 20px;text-decoration: none;font-size: 10px;" class="btn-action glyphicon glyphicon-trash btn-danger" title="Delete"><i class=""></i></a></td>
+            
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</div>
+
+                    <br/>
+                    
+                        <a href="/distributor/create_users/" class="btn btn-default">
+                            <i class="glyphicon glyphicon-plus"></i>
+                            &nbsp;Add User
+                        </a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- Modal -->
+<div id="confirmDeleteModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Delete User</h4>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete the user?</p>
+        <p id="confirm-id" class="hidden"></p>
+        <p id="confirm-username" style="text-align:center; font-weight:bold;"></p>
+      </div>
+      <div class="modal-footer">
+        <button onClick="deleteUser(1)" type="button" class="btn btn-danger" data-dismiss="modal">Delete</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+{% endblock %}
+
+{% block body_footer %}{% endblock %}

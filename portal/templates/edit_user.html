@@ -1,0 +1,154 @@
+{% extends "distributorBase.html" %}
+{% load i18n %}
+
+{% block head %}
+
+{% endblock %}
+{% block body_main %}
+            <div class="col-lg-10">
+                <div class="main-container">
+                    <div class="row">
+                        <div id="div_messages">
+                            
+                        </div>
+                        
+<style type="text/css">
+.user-form{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background: white;
+    border: 1px solid gainsboro;
+    padding-left: 0px;
+}
+
+.user-form .custom-input strong{
+    color: #337ab7;
+}
+
+.user-form .custom-input .required{
+    color: red;
+}
+.error.help-block{
+    color:red;
+}
+</style>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="breadcrumbs">
+                    <ul class="breadcrumbs__list">
+                        <li class="breadcrumbs__item"><a href="/admin_users/distributor_users/">Manage User</a></li>
+                        <li class="breadcrumbs__item">Edit User</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 user-form">
+                <form method='POST' action=''><input type='hidden' name='csrfmiddlewaretoken' value='TMhDbRSgm46Fxuxld733oWNibHWIorO74u2hb4UMGytaeyZ43hLA9uWX6tfGdyEt' />
+                    <div class="custom-input col-xs-7 ">
+                        <strong>Username <span class="required">*</span></strong>
+                        <p><input class="form-control" id="id_username" name="reg_public_name" placeholder="Username" type="text" required value="{{distributor.profile_public_name}}" /></p>
+                        <p class="error help-block"></p>
+                        <div class="separator"></div>
+                    </div>
+
+                    <div class="custom-input col-xs-7 ">
+                        <strong>Password <span class="required">*</span></strong>
+                        <p><input class="form-control" id="id_password" name="reg_password" placeholder="Password" type="text" required value="{{distributor.profile_password}}" /></p>
+                        <p class="error help-block"></p>
+                        <div class="separator"></div>
+                    </div>
+
+                    <div class="custom-input col-xs-7 ">
+                        <strong>Full Name</strong>
+                        <p><input class="form-control" id="id_first_name" name="reg_fullname" placeholder="Full Name" type="text"  value="{{distributor.profile_full_name}}" /></p>
+                        <p class="error help-block"></p>
+                        <div class="separator"></div>
+                    </div>
+
+                    
+                    <div class="custom-input col-xs-7 ">
+                        <strong>Email <span class="required">*</span></strong>
+                        <p><input class="form-control" id="id_email" name="reg_email" placeholder="E-mail" type="text" required value="{{distributor.profile_email}}"/></p>
+                        <p class="error help-block"></p>
+                        <div class="separator"></div>
+                    </div>
+
+                    <div class="custom-input col-xs-7 ">
+                        <strong>Address</strong>
+                        <p><input class="form-control" id="id_address" name="reg_address" placeholder="Address" type="text" value="{{distributor.profile_address}}"/></p>
+                        <p class="error help-block"></p>
+                        <div class="separator"></div>
+                    </div>
+
+                    <div class="custom-input col-xs-7 ">
+                        <strong>Time Zone <span class="required">*</span></strong>
+                        <p><select class="form-control" id="id_timezone" name="reg_timezone" required value="{{distributor.profile_timezone}}">
+<option value="" selected="selected">---------</option>
+<option value="za">Africa/Johannesburg</option>
+<option value="ng">Africa/Lagos</option>
+<option value="in">Asia/Kolkata</option>
+<option value="iq">Asia/Baghdad</option>
+<option value="ae">Asia/Dubai</option>
+<option value="aus-1">Australia/Adelaide</option>
+<option value="aus-2">Australia/Brisbane</option>
+<option value="aus-3">Australia/Broken_Hill</option>
+<option value="aus-4">Australia/Canberra</option>
+<option value="aus-5">Australia/Currie</option>
+<option value="aus-6">Australia/Darwin</option>
+<option value="aus-7">Australia/Eucla</option>
+<option value="aus-8">Australia/Hobart</option>
+<option value="aus-9">Australia/Lindeman</option>
+<option value="aus-10">Australia/Lord_Howe</option>
+<option value="aus-11">Australia/Melbourne</option>
+<option value="aus-12">Australia/North</option>
+<option value="aus-13">Australia/Perth</option>
+<option value="aus-14">Australia/Queensland</option>
+<option value="aus-15">Australia/South</option>
+<option value="en-au">Australia/Sydney</option>
+<option value="aus-17">Australia/Victoria</option>
+<option value="aus-18">Australia/West</option>
+<option value="nl">Europe/Amsterdam</option>
+<option value="de">Europe/Berlin</option>
+<option value="ro">Europe/Bucharest</option>
+<option value="da">Europe/Copenhagen</option>
+<option value="fi">Europe/Helsinki</option>
+<option value="pt">Europe/Lisbon</option>
+<option value="en-gb">Europe/London</option>
+<option value="es">Europe/Madrid</option>
+<option value="nn">Europe/Oslo</option>
+<option value="fr">Europe/Paris</option>
+<option value="sv">Europe/Stockholm</option>
+<option value="en-nz">Pacific/Auckland</option>
+<option value="gl">America/Godthab</option>
+<option value="ca-1">Canada/Pacific</option>
+<option value="ca-2">Canada/Mountain</option>
+<option value="ca-3">Canada/Eastern</option>
+<option value="ca-4">Canada/Newfoundland</option>
+</select></p>
+                        <p class="error help-block"></p>
+                        <div class="separator"></div>
+                    </div>
+
+
+                    <div class="custom-input col-xs-7">
+                        <p>{{strMessage}}</p>
+                    </div>
+                    <div class="custom-input col-xs-7">
+                        <button type="submit" class="btn btn-default">Edit</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+{% endblock %}
+
+{% block body_footer %}{% endblock %}
