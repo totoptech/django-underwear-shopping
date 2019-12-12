@@ -27,3 +27,22 @@ from portal.serializers import UnwravelSignupSerializer
 from rest_framework.authtoken.models import Token
 import datetime
 import time
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+
+formatter = logging.Formatter('%(levelname)s:%(name)s:%(message)s')
+
+file_handler = logging.FileHandler('mcq.log')
+file_handler.setFormatter(formatter)
+
+logger.addHandler(file_handler)
+logger.debug("portal/views.py: __name__=%s" % __name__)
+
+# Create your views here.
+#================== when first page is loaded ==============================
+def portal_index(request):
+    if request.user.is_authenticated:
+        return redirect('portal_user')
+    
+    return redirect('portal_signin')
