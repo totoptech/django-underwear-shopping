@@ -89,3 +89,21 @@ class SignUpViewSet(ModelViewSet):
         else:
             return Response({'error': serializer.errors},
                             status=status.HTTP_400_BAD_REQUEST)
+
+def __login(request, username, password):
+    ret = False
+    user = authenticate(username=username, password=password)
+    if user:
+        if user.is_active:
+            auth_login(request, user)
+            ret = True
+        else:
+            messages.add_message(request, messages.INFO, 'User is not active!')
+    else:
+        messages.add_message(request, messages.INFO, 'User or Password Not Correct!')
+    return ret
+
+# sign out
+def portal_signout(request):
+    auth_logout(request)
+    return redirect('portal_signin')
