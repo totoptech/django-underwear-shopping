@@ -64,3 +64,28 @@ def portal_signin(request):
             strMessage = "Username or password is invalid!"
     response = render(request,"signin.html",{ "message": strMessage} )
     return response
+
+class SignUpViewSet(ModelViewSet):
+    """
+    API model viewset used to logout
+    using API. This endpoint will remove the
+    """
+    serializer_class = UnwravelSignupSerializer
+    permission_classes = [AllowAny, ]
+    http_method_names = ['post', 'option', 'head']
+    
+    def create(self, request, *args, **kwargs):
+        print(request.data)
+
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            user = serializer.save()
+            user.set_password(request.data.get('password',None))
+            user.save()
+            json = serializer.data
+
+            return Response(json,
+                            status=status.HTTP_201_CREATED)
+        else:
+            return Response({'error': serializer.errors},
+                            status=status.HTTP_400_BAD_REQUEST)
