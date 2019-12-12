@@ -46,3 +46,21 @@ def portal_index(request):
         return redirect('portal_user')
     
     return redirect('portal_signin')
+
+#================== SIGN IN ==============================
+def portal_signin(request):
+    logger.info(request.user.is_authenticated)
+    if request.user.is_authenticated: # to avoid go to login screen again without logout.
+        return redirect('portal_index')
+
+    strMessage = ""
+    if request.method=='POST':
+
+        username = request.POST['email']
+        password = request.POST['password']
+        if __login(request, username,password):
+            return redirect('portal_user')
+        else:
+            strMessage = "Username or password is invalid!"
+    response = render(request,"signin.html",{ "message": strMessage} )
+    return response
