@@ -16,6 +16,6 @@ urlpatterns = [
          confirm_email,
          name='account_confirm_email'),
     path('auth/register/', include('rest_auth.registration.urls')),
-    #path('login/', ConfirmAPIView.as_view(), name='confirm_login'),
+    path('login/', ConfirmAPIView.as_view(), name='confirm_login'),
     url(r"^login/$", views.confirm_login, name='confirm_login')
 ]

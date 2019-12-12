@@ -27,11 +27,3 @@ class ConfirmAPIView(RetrieveAPIView):
     def get(self, *args, **kwargs):
     	print('USER:',self.request.user)
 	#return redirect("http://unwravel.com")
-
-class TestConfirmAPIView(RetrieveAPIView):
-    permission_classes = (IsAuthenticated,)
-    serializer_class = AccountSerializer
-    print("I am USER")
-    def get(self, *args, **kwargs):
-    	print('USER:',self.request.user)
-	#return redirect("http://unwravel.com")
