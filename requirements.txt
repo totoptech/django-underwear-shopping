@@ -12,7 +12,7 @@ django-bootstrap-datepicker-plus==3.0.5
 django-bootstrap4==0.0.8
 django-cors-headers==3.0.1
 django-rest-auth==0.9.5
-djangorestframework==3.9.4
+djangorestframework==3.11.2
 environ==1.0
 idna==2.8
 itypes==1.1.0
